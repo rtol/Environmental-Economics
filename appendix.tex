@@ -1,0 +1,70 @@
+\appendix
+\motto{}
+\chapter{Optimization in continuous time}
+
+\section{Discrete time}
+You are familiar with constrained optimization. If we want to find the optimal consumption path in a production economy, you could
+\begin{equation}
+\label{eq:discr}
+	\max_{C_0, C_1, ...} \sum_t U(C_t) (1+\rho)^{-t} \text{ s.t. } \Delta K_t = -\delta K_t + (Q(K_t) - C_t)
+\end{equation}
+where $U$ denotes utility, $C_t$ consumption in year $t$, $\rho$ the utility discount rate, $K_t$ the capital stock at time $t$, $\delta$ the depreciation rate, and $Q$ the production function.
+
+In order to solve this, form the Lagrangian:
+\begin{equation}
+	\mathcal{L} =  \sum_t U(C_t) (1+\rho)^{-t} -\lambda_t \left ( -\delta K_t + Q(K_t) - C_t - \Delta K_t \right )
+\end{equation}
+The Lagrangian is the objective function minus the Lagrange multiplier times the constraint-rearranged-to-equal-zero.
+
+The first-order conditions are
+\begin{equation}
+\label{eq:focdisc1}
+	\frac{\partial \mathcal{L}}{\partial C_t} =  U_{C_t} + \lambda_t = 0 \forall t
+\end{equation}
+and
+\begin{equation}
+\label{eq:focdisc2}
+	\frac{\partial \mathcal{L}}{\partial \lambda_t} = 0 \Leftrightarrow \Delta K_t = I_t -\delta K_t \forall t
+\end{equation}
+where $I_t$ is investment in year $t$.
+
+The problem with these first-order conditions is that they are not particularly informative. For instance, we find that the shadow price of capital, $\lambda_t$, should be equal to the marginal utility of consumption, $U_{C_t}$, at every point in time\textemdash this follows from Equation (\ref{eq:focdisc1})\textemdash but we discern nothing about the evolution of the shadow price over time. Equation (\ref{eq:focdisc2}) reproduces the equation of motion of capital, rather than its price.
+
+\section{Continuous time}
+You could also write the maximisation problem in continuous time
+\begin{equation}
+\label{eq:cont}
+	\max_{C(t)} \int_t U(C(t)) \mathrm{e}^{-\rho t} \mathrm{d}t  \text{ s.t. } \dot{K}(t) = -\delta K(t) + (Q(K(t)) - C(t))
+\end{equation}
+There are a few differences between Equations (\ref{eq:discr}) and (\ref{eq:cont}). Instead of a summation over time, we have an integral. Recall that a Riemann integral is summation in infinitisimally small steps. Instead of subscripts to denote time, variables are now functions of time. This is just a convention. Instead of the discount factor $(1+\rho)^{-t}$ we have $\mathrm{e}^{-\rho t}$. In the former, $\rho$ is the annual discount rate. Measuring time in annual time steps is arbitrary. Instead of solar years, you could measure time in lunar months, or in days, hours, minutes, or seconds. If the time step goes to zero,  $(1+\rho)^{-t}$ approaches $\mathrm{e}^{-\rho t}$. Finally, $\dot{K}(t)$ replaces $\Delta K_t$. The latter is the difference between two periods, $\Delta K_t = K_{t+1} - K_{t}$. The former is the change at time $t$,  $\dot{K}(t) = \frac{\partial K(t)}{\partial t}$. Although the notation has changed to account for the fact that we are working in continuous rather than in discrete time, our representation of the system has not changed.
+
+You cannot use the methods developed by Joseph-Louis Lagrange to find an optimum in continuous time. Instead, you have to use the methods of William Rowan Hamilton and Lev Pontryagin. So, in order to solve this, we form the Hamiltonian, or more specifically, the current-value Hamiltonian\footnote{Mathematicians and physicists are better used to the present-value Hamiltonian. The results are the same. The current-value Hamiltonian is more readily interpreted for economic problems.}:
+\begin{equation}
+\label{eq:hamilton}
+	\mathcal{H} = U(C(t)) + \eta(t) \dot{K}(t)
+\end{equation}
+The Hamiltonian consists of three elements. The first element is the current value of the objective function. That is, get rid of the integral. Only take the bit that you integrate, in this case $U(C(t))$. The second bit is known as the co-state variable, $\eta(t)$, which is a shadow price just like the Lagrange multiplier. The third part is the left-hand-side of the constraint, $\dot{K}(t)$. Compared to the Lagrangian, the Hamiltonian is considerably simpler.
+
+This simplicity helps greatly with the first-order conditions. There are two. The first is
+\begin{equation}
+	\frac{\partial \mathcal{H} }{\partial C(t)} = U_{C(t)} - \eta (t) = 0
+\end{equation}
+The first first-order condition has that the first partial derivative of the Hamiltonian to the control variable be equal to zero, just like in Lagrange's constrained optimization. As with the Lagrangian, this says that the shadow price of capital should equal the marginal utility of consumption. This is because we sacrifice consumption to invest so as to accumulate capital used to produce consumption goods.
+
+The second first-order condition has no analogue with Lagrange. It is
+\begin{equation}
+	\dot{\eta}(t) - \rho \eta(t) = \frac{\partial \mathcal{H} }{\partial K(t)} = \eta(t) \left ( Q_{K(t)}-\delta \right ) 
+\end{equation}
+That is, the first partial derivative of the Hamiltonian to the constrained stock variable equals the change in its co-state variable minus the discount rate times the co-state variable.
+
+This can be rewritten as
+\begin{equation}
+\label{eq:cfoc2}
+	\frac{\dot{\eta}(t)}{\eta(t)}  = Q_{K(t)} -\delta + \rho
+\end{equation}
+The left-hand side is the proportional rate of change of the shadow price of capital. This is a variable with an economic interpretation. It is the equation of motion of the \emph{price} of capital.
+
+The elements on the right-hand side are intuitive too: the marginal productivity of capital $Q_K(t)$ , the depreciation rate $\delta$, and the utility discount rate $\rho$. Equation (\ref{eq:cfoc2}) thus says that the value of capital should increase with its productivity, and fall with depreciation, and rise with discount rate. The last result may not be intuitive. If the discount rate is higher, you care less about the future, therefore invest less, and thus have less but more valuable capital as a result.
+
+\section{Conclusion}
+Optimization in continuous time is daunting at first sight. However, it is just a trick. Constrained optimization is a trick. Form the Lagrangian. Write down the first-order conditions. Continuous time optimization is a trick too, albeit a different one. Form the Hamiltonian. Write down the first-order conditions. The good thing about the Hamiltonian is that its first-order conditions immediately lead to economic insight.
