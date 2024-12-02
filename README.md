@@ -4,4 +4,4 @@ The latest version of the textbook can be found <a href="https://buymeacoffee.co
 
 The textbook comes with a solutions manual. If you need that, contact r.tol@sussex.ac.uk
 
-You can <a href="https://buymeacoffee.com/richardtol">buy me a coffee</a>. Your contribution will be used to support research.
+You can <a href="https://buymeacoffee.com/richardtol">support my research</a>.
